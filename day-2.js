@@ -1,4 +1,5 @@
 "use strict";
+const _ = require('lodash');
 
 class Company{
   workers = [];
@@ -8,13 +9,17 @@ class Company{
   }
 
   addWorker(worker){
-    const hasID = "id" in worker;
+    const array = this.workers.keys(this.worker);
+    const properArray = ['id', 'name', 'age', 'position', 'salary'];
+
+
+    /*const hasID = "id" in worker;
     const hasName = "name" in worker;
     const hasAge = "age" in worker;
     const hasPosition = "position" in worker;
-    const hasSalary = "salary" in worker;
+    const hasSalary = "salary" in worker;*/
 
-    if(hasID && hasName && hasAge && hasPosition && hasSalary){
+    if(_.isEqual(array,properArray)){
       this.workers.push(worker);
     }else{
       console.log("Not all fields.Required: \n-id;\n-name;\n-age;\n-position;\n-salary");
@@ -74,10 +79,10 @@ const worker = new Company({
 
 worker.addWorker({id: 345678, /*name:'bem',*/ age:'27', position:"doctor", salary: 200,});
 
-worker.removeWorker(2340);
+//worker.removeWorker(2340);
 
-worker.updateSalary(34568);
+//worker.updateSalary(34568);
 
-worker.getById("gjhjkhk");
+//worker.getById("gjhjkhk");
 
 console.log(worker.getAll());
